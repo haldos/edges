@@ -32,7 +32,12 @@ IPOL 2012
 	./bin: (empty until compilation)
 
 	./example:
-	
+	lena_harlick.png	-	Output of Haralick algorithm using lena.png as input image.
+	lena_mh.png			-	Output of Marr-Hildreth algorithm (Gaussian kernel) using lena.png as input image.
+	lena_mhlog.png		-	Output of Marr-Hildreth algorithm (LoG kernel) using lena.png as input image.
+	lena_prewitt.png	-	Output of Prewitt algorithm using lena.png as input image.
+	lena_roberts.png	-	Output of Roberts algorithm using lena.png as input image.
+	lena_sobel.png		-	Output of Sobel algorithm using lena.png as input image.
 	
 	./src:
 	2dconvolution.c  	-	Implementation of the 2-D convolution.
@@ -105,17 +110,17 @@ IPOL 2012
 	Marr-Hildreth algorithm (LoG kernel):
 		Usage: test_mh_log input_image_1 sigma n tzc output
 		Example:
-					> bin/test_mh_log test/lena.png 2 17 0.1 lena_mh.png
+					> bin/test_mh_log test/lena.png 2 17 0.1 lena_mhlog.png
 					Input image loaded:	 512x512 image with 3 channel(s).
 					images converted to grayscale
-					Output Image saved in lena_mh.png:	 512x512 image with 3 channel(s).
+					Output Image saved in lena_mhlog.png:	 512x512 image with 3 channel(s).
 					marr-hildreth edge detector computation done.
 					execution time: 0.670 s.
 
 5 - Test images
 
-	Some test images are provided in the test folder.
-	The output images using lena.png as input image, are also provided in the example directory.
+	Some test images are provided in the «test» folder.
+	The output images using «lena.png» as input image, are also provided in the «example» directory.
 
 6 - Copyrights
 
