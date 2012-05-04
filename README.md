@@ -83,7 +83,9 @@ Execution
 
 ### First derivative edge detectors:
 
-Usage: test_fded input_image threshold
+Usage: 
+
+	> test_fded input_image threshold
 
 Example:
 
@@ -98,64 +100,80 @@ Example:
 
 ### Haralick algorithm:
 
-		Usage: test_haralick input_image rhozero output
-		Example:
-					> bin/test_haralick test/lena.png 0.5 lena_harlick.png
-					Input image loaded:	 512x512 image with 3 channel(s).
-					images converted to grayscale
-					60122 edge points found...
-					Output Image saved in lena_harlick.png:	 512x512 image with 3 channel(s).
-					haralick's edge detector computation done.
-					execution time: 0.440 s.
+Usage: 
 
-	Marr-Hildreth algorithm (Gaussian Kernel):
-		Usage: test_mh input_image sigma n tzc output_image
-		Example:
-					> bin/test_mh test/lena.png 2 13 0.1 lena_mh.png
-					Input image loaded:	 512x512 image with 3 channel(s).
-					images converted to grayscale
-					Output Image saved in lena_mh.png:	 512x512 image with 3 channel(s).
-					marr-hildreth edge detector computation done.
-					execution time: 0.420 s.
+	> test_haralick input_image rhozero output
+		
+Example:
 
-	Marr-Hildreth algorithm (LoG kernel):
-		Usage: test_mh_log input_image_1 sigma n tzc output
-		Example:
-					> bin/test_mh_log test/lena.png 2 17 0.1 lena_mhlog.png
-					Input image loaded:	 512x512 image with 3 channel(s).
-					images converted to grayscale
-					Output Image saved in lena_mhlog.png:	 512x512 image with 3 channel(s).
-					marr-hildreth edge detector computation done.
-					execution time: 0.670 s.
+	> bin/test_haralick test/lena.png 0.5 lena_harlick.png
+	Input image loaded:	 512x512 image with 3 channel(s).
+	images converted to grayscale
+	60122 edge points found...
+	Output Image saved in lena_harlick.png:	 512x512 image with 3 channel(s).
+	haralick's edge detector computation done.
+	execution time: 0.440 s.
 
-5 - Test images
+### Marr-Hildreth algorithm (Gaussian Kernel):
 
-	Some test images are provided in the «test» folder.
-	The output images using «lena.png» as input image, are also provided in the «example» directory.
+Usage: 
 
-6 - Copyrights
+	> test_mh input_image sigma n tzc output_image
+		
+Example:
 
-	Copyright (C) 2011-2012, Haldo Spontón <haldos@fing.edu.uy>
-	Copyright (C) 2011-2012, Juan Cardelino <juanc@fing.edu.uy>
+	> bin/test_mh test/lena.png 2 13 0.1 lena_mh.png
+	Input image loaded:	 512x512 image with 3 channel(s).
+	images converted to grayscale
+	Output Image saved in lena_mh.png:	 512x512 image with 3 channel(s).
+	marr-hildreth edge detector computation done.
+	execution time: 0.420 s.
 
-7 - Licence
+### Marr-Hildreth algorithm (LoG kernel):
 
-	This program is free software: you can use, modify and/or
-	redistribute it under the terms of the GNU General Public
-	License as published by the Free Software Foundation, either
-	version 3 of the License, or (at your option) any later
-	version. You should have received a copy of this license along
-	this program. If not, see <http://www.gnu.org/licenses/>.
+Usage: 
+
+	> test_mh_log input_image_1 sigma n tzc output
+
+Example:
+
+	> bin/test_mh_log test/lena.png 2 17 0.1 lena_mhlog.png
+	Input image loaded:	 512x512 image with 3 channel(s).
+	images converted to grayscale
+	Output Image saved in lena_mhlog.png:	 512x512 image with 3 channel(s).
+	marr-hildreth edge detector computation done.
+	execution time: 0.670 s.
+
+Test images
+-----------
+
+Some test images are provided in the «test» folder.
+The output images using «lena.png» as input image, are also provided in the «example» directory.
+
+Copyrights
+----------
+
+Copyright (C) 2011-2012, Haldo Spontón <haldos@fing.edu.uy>
+Copyright (C) 2011-2012, Juan Cardelino <juanc@fing.edu.uy>
+
+Licence
+-------
+
+This program is free software: you can use, modify and/or
+redistribute it under the terms of the GNU General Public
+License as published by the Free Software Foundation, either
+version 3 of the License, or (at your option) any later
+version. You should have received a copy of this license along
+this program. If not, see <http://www.gnu.org/licenses/>.
 	
-	This program is free software: you can use, modify and/or
-	redistribute it under the terms of the simplified BSD
-	License. You should have received a copy of this license along
-	this program. If not, see
-	<http://www.opensource.org/licenses/bsd-license.html>.
+This program is free software: you can use, modify and/or
+redistribute it under the terms of the simplified BSD
+License. You should have received a copy of this license along
+this program. If not, see
+<http://www.opensource.org/licenses/bsd-license.html>.
 	
-	This program is provided for research and education only: you can
-	use and/or modify it for these purposes, but you are not allowed
-	to redistribute this work or derivative works in source or
-	executable form. A license must be obtained from the patent right
-	holders for any other use.
-
+This program is provided for research and education only: you can
+use and/or modify it for these purposes, but you are not allowed
+to redistribute this work or derivative works in source or
+executable form. A license must be obtained from the patent right
+holders for any other use.
