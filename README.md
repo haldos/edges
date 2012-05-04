@@ -65,6 +65,7 @@ Compilation
 -----------
 
 In the root directory:
+
 	> cmake .
 	> make
 
