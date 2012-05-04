@@ -154,6 +154,7 @@ Copyrights
 ----------
 
 Copyright (C) 2011-2012, Haldo Spontón <haldos@fing.edu.uy>
+
 Copyright (C) 2011-2012, Juan Cardelino <juanc@fing.edu.uy>
 
 Licence
