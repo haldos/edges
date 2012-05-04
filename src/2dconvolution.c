@@ -22,6 +22,14 @@
 	holders for any other use.
 */
 
+/** @file
+* \file 2dconvolution.c
+* \author Haldo Spontón <haldos@fing.edu.uy> & Juan Cardelino <juanc@fing.edu.uy>
+* \date May, 2012
+* \see ``Review of edge detectors´´ IPOL publication.
+* \brief This file implements the required functions to compute the convolution between an input array and a kernel array. This function also manages the allocation and liberation of memory used by neighborhoods and index offset arrays.
+*/
+
 //  Software Guide : BeginLatex
 //  This file contains the necessary functions to compute the convolution between an 
 //  input array and a kernel (usually the input array is larger than the kernel). \\

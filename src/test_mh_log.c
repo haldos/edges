@@ -22,11 +22,13 @@
 	holders for any other use.
 */
 
-//		+-----------------------------------+
-//		| Marr-Hildreth Edge Detector       |
-//		| Implemented by Haldo Spontón      |
-//		| Last modified: 03/feb/2012        |
-//		+-----------------------------------+
+/** @file
+* \file test_mh_log.c
+* \author Haldo Spontón <haldos@fing.edu.uy> & Juan Cardelino <juanc@fing.edu.uy>
+* \date May, 2012
+* \see ``Review of edge detectors´´ IPOL publication.
+* \brief Implements the Marr-Hildreth edge detection algorithm, using a LoG (Laplacian of a Gaussian) kernel. In summary, this function opens the image, converts it to grayscale (if necessary), then the convolves it with a LoG kernel, and finally, find zero crossings in the resulting image.
+*/
 
 #include "iio.c"
 #include "gaussian_kernel.c"

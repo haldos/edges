@@ -22,6 +22,14 @@
 	holders for any other use.
 */
 
+/** @file
+* \file gaussian_kernel.c
+* \author Haldo Spontón <haldos@fing.edu.uy> & Juan Cardelino <juanc@fing.edu.uy>
+* \date May, 2012
+* \see ``Review of edge detectors´´ IPOL publication.
+* \brief Implements the generation of both Gaussian and LoG (Laplacian of a Gaussian) kernels. This function also manages the allocation and liberation of memory used by kernels.
+*/
+
 //  Software Guide : BeginLatex
 //	This file implements the necessary functions for generating 
 //	Gaussian and LoG (Laplacian of a Gaussian) kernels. It is also 

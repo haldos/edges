@@ -1,24 +1,22 @@
+REVIEW OF EDGE DETECTORS - IPOL 2012
+====================================
 
-REVIEW OF EDGE DETECTORS
-IPOL 2012
+About
+-----
 
-1 - About
-
-	These are the source files implementing some classical 
-	algorithms of edge detection. 
+These are the source files implementing some classical algorithms of edge detection. 
 	
-	The implemented algorithms are:
+The implemented algorithms are:
 		
-		- First Derivative:
-								- Roberts
-								- Prewitt
-								- Sobel
-		- Second Derivative:	
-								- Marr-Hildreth
-								- Haralick
+* First Derivative:
+** Roberts
+** Prewitt
+** Sobel
+* Second Derivative:	
+** Marr-Hildreth
+** Haralick
 
-	The algorithms are implemented in C language and are compiled 
-	using cmake. 
+The algorithms are implemented in C language and are compiled using cmake. 
 
 2 - Filelist
 

@@ -22,6 +22,14 @@
 	holders for any other use.
 */
 
+/** @file
+* \file test_fded.c
+* \author Haldo Spontón <haldos@fing.edu.uy> & Juan Cardelino <juanc@fing.edu.uy>
+* \date May, 2012
+* \see ``Review of edge detectors´´ IPOL publication.
+* \brief Implements some first derivative edge detection algorithms: Roberts, Prewitt and Sobel. In brief, this program opens an image, and convolves it with several operators. Then thresholded imager are generated for each of the methods.
+*/
+
 //  Software Guide : BeginLatex
 //  First derivative edge detectors (Roberts, Prewitt and Sobel), main C file.\\
 //  

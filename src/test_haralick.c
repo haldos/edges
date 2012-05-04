@@ -22,6 +22,14 @@
 	holders for any other use.
 */
 
+/** @file
+* \file test_haralick.c
+* \author Haldo Spontón <haldos@fing.edu.uy> & Juan Cardelino <juanc@fing.edu.uy>
+* \date May, 2012
+* \see ``Review of edge detectors´´ IPOL publication.
+* \brief Implements the Haralick edge detection algorithm. Haralick's algorithm basically approaches the neighborhood of a pixel using a bicubic polynomial function. Then evaluate certain conditions on the parameters found for the model, equivalent to find zero crossings in the second derivative of the image in that neighborhood.
+*/
+
 //  Software Guide : BeginLatex
 //  Haralick edge detectors, main C file.\\
 //  

@@ -22,6 +22,14 @@
 	holders for any other use.
 */
 
+/** @file
+* \file test_mh.c
+* \author Haldo Spontón <haldos@fing.edu.uy> & Juan Cardelino <juanc@fing.edu.uy>
+* \date May, 2012
+* \see ``Review of edge detectors´´ IPOL publication.
+* \brief Implements the Marr-Hildreth edge detection algorithm, using a gaussian kernel. In summary, this function opens the image, converts it to grayscale (if necessary), then the convolves it first with a Gaussian kernel and then with an operator that approximates the calculation of the Laplacian, and finally, find zero crossings in the resulting image.
+*/
+
 //  Software Guide : BeginLatex
 //  Marr-Hildreth edge detector, main C file.\\
 //  
