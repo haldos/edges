@@ -18,7 +18,10 @@ The implemented algorithms are:
 
 The algorithms are implemented in C language and are compiled using cmake. 
 
-2 - Filelist
+Filelist
+--------
+
+Root directory:
 
 	.:
 	bin  			-	Binary files folder (empty until compilation).
@@ -27,9 +30,10 @@ The algorithms are implemented in C language and are compiled using cmake.
 	src  			-	Source files folder.
 	test			-	Test images folder.
 	
-	./bin: (empty until compilation)
+./bin: (empty until compilation)
 
-	./example:
+./example:
+
 	lena_harlick.png	-	Output of Haralick algorithm using lena.png as input image.
 	lena_mh.png			-	Output of Marr-Hildreth algorithm (Gaussian kernel) using lena.png as input image.
 	lena_mhlog.png		-	Output of Marr-Hildreth algorithm (LoG kernel) using lena.png as input image.
@@ -37,7 +41,8 @@ The algorithms are implemented in C language and are compiled using cmake.
 	lena_roberts.png	-	Output of Roberts algorithm using lena.png as input image.
 	lena_sobel.png		-	Output of Sobel algorithm using lena.png as input image.
 	
-	./src:
+./src:
+
 	2dconvolution.c  	-	Implementation of the 2-D convolution.
 	2dconvolution.h		-	(header file).
 	CMakeLists.txt		-	CMake configuration file.
@@ -50,18 +55,20 @@ The algorithms are implemented in C language and are compiled using cmake.
 	test_mh.c   		-	Marr-Hildreth algorithm (Gaussian kernel), main C-file.
 	test_mh_log.c 		-	Marr-Hildreth algorithm (LoG kernel), main C-file.
 	
-	./test:
+./test:
+
 	lena.png  		-	Lena image (512x512px).
 	molino.png  	-	Windmill image (1000x563px).
 	oranges.png		-	Oranges image (536x480px).
 
-3 - Compilation
+Compilation
+-----------
 
-	In the root directory:
-		> cmake .
-		> make
+In the root directory:
+	> cmake .
+	> make
 
-	Four executable files are created in the bin directory:
+Four executable files are created in the bin directory:
 
 	bin/:
 	test_fded  		-	First derivative edge detectors (Roberts, Prewitt & Sobel).
