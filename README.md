@@ -9,12 +9,12 @@ These are the source files implementing some classical algorithms of edge detect
 The implemented algorithms are:
 		
 * First Derivative:
-** Roberts
-** Prewitt
-** Sobel
+ * Roberts
+ * Prewitt
+ * Sobel
 * Second Derivative:	
-** Marr-Hildreth
-** Haralick
+ * Marr-Hildreth
+ * Haralick
 
 The algorithms are implemented in C language and are compiled using cmake. 
 
