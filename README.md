@@ -78,21 +78,26 @@ Four executable files are created in the bin directory:
 	test_mh_log		-	Marr-Hildreth algorithm, using LoG kernel.
 
 
-4 - Execution
+Execution
+---------
 
-	First derivative edge detectors:
-		Usage: test_fded input_image threshold
-		Example:
-					> bin/test_fded test/lena.png 0.1
-					Input image loaded:	 512x512 image with 3 channel(s).
-					images converted to grayscale
-					Roberts image saved to roberts.png.
-					Prewitt image saved to prewitt.png.
-					Sobel image saved to sobel.png.
-					Edge detection algorithms based on first derivative computation done.
-					execution time: 0.280 s.
+### First derivative edge detectors:
 
-	Haralick algorithm:
+Usage: test_fded input_image threshold
+
+Example:
+
+	> bin/test_fded test/lena.png 0.1
+	Input image loaded:	 512x512 image with 3 channel(s).
+	images converted to grayscale
+	Roberts image saved to roberts.png.
+	Prewitt image saved to prewitt.png.
+	Sobel image saved to sobel.png.
+	Edge detection algorithms based on first derivative computation done.
+	execution time: 0.280 s.
+
+### Haralick algorithm:
+
 		Usage: test_haralick input_image rhozero output
 		Example:
 					> bin/test_haralick test/lena.png 0.5 lena_harlick.png
