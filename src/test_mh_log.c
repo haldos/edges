@@ -39,6 +39,19 @@
 #define SAVE_KERNEL false
 #define SAVE_SMOOTHED_IMAGE false
 
+/*!
+ \fn int main_mhl(int argc, char *argv[])
+ \brief Main function of the Marr-Hildreth edge detection algorithm, using LoG kernel.
+ @param input_image Filename of the input image.
+ @param sigma Standard deviation of the Laplacian of a Gaussian kernel.
+ @param n Size of the kernel (n x n).
+ @param tzc Threshold for the zero-crossing algorithm.
+ @param output_image Filename of the output image.
+ \return None.
+ \ingroup mhl
+	\note The real name of this function is main. Function name was temporarily changed to the proper functioning of doxygen.
+*/
+
 int main(int argc, char *argv[]) {
 	if (argc != 6) {
 		printf("Usage: %s input_image_1 sigma n tzc output\n", argv[0]);

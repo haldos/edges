@@ -44,6 +44,14 @@
 	#include <stdio.h> // fprintf
 // Software Guide : EndCodeSnippet
 
+/*!
+ \fn double *gaussian_kernel(int n, float sigma)
+ \brief This function generates a Gaussian kernel of size nxn and standard deviation sigma.
+ @param n Kernel size.
+ @param sigma Standard deviation of the Gaussian function.
+ \return Double array of size nxn containing the Gaussian kernel values.
+*/
+
 //  Software Guide : BeginLatex
 //	\vspace{0.5cm}
 //	\Large{Function \texttt{gaussian\_kernel}} \\
@@ -96,6 +104,13 @@ double *gaussian_kernel(int n, float sigma){
 //  Software Guide : EndCodeSnippet
 }
 
+/*!
+ \fn void free_gaussian_kernel(double* kernel)
+ \brief This function frees the memory occupied by a kernel array.
+ @param *kernel Pointer to kernel array.
+ \return None.
+*/
+
 //  Software Guide : BeginLatex
 //	\vspace{0.5cm}
 //	\Large{Function \texttt{free\_gaussian\_kernel}} \\
@@ -115,6 +130,14 @@ void free_gaussian_kernel(double* kernel){
 //  Software Guide : EndCodeSnippet
 
 }
+
+/*!
+ \fn double *LoG_kernel(int n, float sigma)
+ \brief This function generates a Laplacian of a Gaussian (LoG) kernel of size nxn and standard deviation sigma.
+ @param n Kernel size.
+ @param sigma Standard deviation of the Gaussian function.
+ \return Double array of size nxn containing the LoG kernel values.
+*/
 
 //  Software Guide : BeginLatex
 //	\vspace{0.5cm}

@@ -27,7 +27,7 @@
 * \author Haldo Spontón <haldos@fing.edu.uy> & Juan Cardelino <juanc@fing.edu.uy>
 * \date May, 2012
 * \see ``Review of edge detectors´´ IPOL publication.
-* \brief Implements some first derivative edge detection algorithms: Roberts, Prewitt and Sobel. In brief, this program opens an image, and convolves it with several operators. Then thresholded imager are generated for each of the methods.
+* \brief Implements some first derivative edge detection algorithms: Roberts, Prewitt and Sobel. In brief, this program opens an image, and convolves it with several operators. Then thresholded images are generated for each of the methods.
 */
 
 //  Software Guide : BeginLatex
@@ -46,7 +46,6 @@
 
 // Software Guide : BeginCodeSnippet
 	#include "iio.c"
-	#include "gaussian_kernel.c"
 	#include "2dconvolution.c"
 	#include <time.h>
 // Software Guide : EndCodeSnippet
@@ -59,6 +58,16 @@
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
 #define THRESHOLD(x, th) (((x) > (th)) ? (255) : (0))
 // Software Guide : EndCodeSnippet
+
+/*!
+ \fn int main_fded(int argc, char *argv[])
+ \brief Main function of the Roberts, Prewitt and Sobel edge detection algorithms.
+ @param input_image Input image filename.
+ @param threshold Gradient threshold used to generate binary edges images.
+ \return None.
+ \ingroup fded
+	\note The real name of this function is main. Function name was temporarily changed to the proper functioning of doxygen.
+*/
 
 //  Software Guide : BeginLatex
 //	\vspace{0.5cm}

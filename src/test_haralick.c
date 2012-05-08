@@ -22,8 +22,7 @@
 	holders for any other use.
 */
 
-/** @file
-* \file test_haralick.c
+/** @file test_haralick.c
 * \author Haldo Spontón <haldos@fing.edu.uy> & Juan Cardelino <juanc@fing.edu.uy>
 * \date May, 2012
 * \see ``Review of edge detectors´´ IPOL publication.
@@ -48,6 +47,17 @@
 	#include "2dconvolution.c"
 	#include <time.h>
 // Software Guide : EndCodeSnippet
+
+/*!
+ \fn int main_haralick(int argc, char *argv[])
+ \brief Main function of the Haralick edge detection algorithms.
+ @param input_image Input image filename.
+ @param rho_zero Threshold for the Haralick edge condition.
+ @param output Output image filename.
+ \return None.
+ \ingroup haralick
+	\note The real name of this function is main. Function name was temporarily changed to the proper functioning of doxygen.
+*/
 
 //  Software Guide : BeginLatex
 //	\vspace{0.5cm}

@@ -42,6 +42,12 @@
 #include <stdio.h> // fprintf
 // Software Guide : EndCodeSnippet
 
+/*!
+ \fn void free_neighborhood(double* neighborhood)
+ \brief This function frees the memory occupied by an array containing a neighborhood of a pixel.
+ @param *neighborhood Pointer to the neighborhood array.
+ \return None.
+*/
 //  Software Guide : BeginLatex
 //	\vspace{0.5cm}
 //	\Large{Function \texttt{free\_gaussian\_kernel}} \\
@@ -62,6 +68,12 @@ void free_neighborhood(double* neighborhood){
 
 }
 
+/*!
+ \fn void free_neighbors_offsets(int* offsets)
+ \brief This function frees the memory occupied by an array containing a neighbors offset index of a pixel.
+ @param *offsets Pointer to the neghbors offset array.
+ \return None.
+*/
 //  Software Guide : BeginLatex
 //	\vspace{0.5cm}
 //	\Large{Function \texttt{free\_gaussian\_kernel}} \\
@@ -82,6 +94,13 @@ void free_neighbors_offsets(int* offsets){
 
 }
 
+/*!
+ \fn int *get_neighbors_offset(int w, int n)
+ \brief This function calculates the offset index for neighbors of a pixel.
+ @param w Image width.
+ @param n Size of the neighborhood (n x n).
+ \return Integer array of size nxn containing the offtests of each neighbor pixel.
+*/
 //  Software Guide : BeginLatex
 //	\vspace{0.5cm}
 //	\Large{Function \texttt{get\_neighbors\_offset}} \\
@@ -122,6 +141,15 @@ int *get_neighbors_offset(int w, int n){
 //  Software Guide : EndCodeSnippet
 }
 
+/*!
+ \fn double *get_neighborhood(double *im, int pos, int n, int* offsets)
+ \brief This function returns the neighborhood of a pixel, using the neighbors offset computed in \link get_neighbors_offset \endlink.
+ @param *im Image array.
+ @param pos Pixel position in the image array.
+ @param n Size of the neighborhood (n x n).
+ @param *offsets Neigbors index offset array.
+ \return Double array of size nxn containing the neighborhood of the pixel.
+*/
 //  Software Guide : BeginLatex
 //	\vspace{0.5cm}
 //	\Large{Function \texttt{get\_neighborhood}} \\
@@ -166,6 +194,16 @@ double *get_neighborhood(double *im, int pos, int n, int* offsets){
 //  Software Guide : EndCodeSnippet
 }
 
+/*!
+ \fn double *conv2d(double *input, int w, int h, double *kernel, int n)
+ \brief This function calculates the convolution of input image with the input kernel.
+ @param *input Input image array.
+ @param w Input image width.
+ @param h Input image heigth.
+ @param *kernel Kernel array used in the convolution.
+ @param n Size of the kernel (n x n).
+ \return Double array of size (w+n-1)x(h+n-1), output of the convolution between input image and kernel, and using zero-padding.
+*/
 //  Software Guide : BeginLatex
 //	\vspace{0.5cm}
 //	\Large{Function \texttt{conv2d}} \\

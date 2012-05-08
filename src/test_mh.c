@@ -57,6 +57,19 @@
 #define SAVE_SMOOTHED_IMAGE false
 #define SAVE_LAPLACIAN_IMAGE false
 
+/*!
+ \fn int main_mhg(int argc, char *argv[])
+ \brief Main function of the Marr-Hildreth edge detection algorithm, using Gaussian kernel.
+ @param input_image Filename of the input image.
+ @param sigma Standard deviation of the Gaussian kernel.
+ @param n Size of the kernel (n x n).
+ @param tzc Threshold for the zero-crossing algorithm.
+ @param output_image Filename of the output image.
+ \return None.
+ \ingroup mhg 
+	\note The real name of this function is main. Function name was temporarily changed to the proper functioning of doxygen.
+*/
+
 //  Software Guide : BeginLatex
 //	\vspace{0.5cm}
 //	\Large{Main function} \\
@@ -69,7 +82,7 @@ int main(int argc, char *argv[]) {
 		printf("Usage: %s input_image sigma n tzc output_image\n", argv[0]);
 	} else {
 
-		// Execution time:
+		// Variable to measure execution time:
 		double start = (double)clock();
 	
 		// Parameters
