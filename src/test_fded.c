@@ -185,8 +185,8 @@ int main(int argc, char *argv[]) {
 // Software Guide : EndCodeSnippet
 
 //	Software Guide : BeginLatex
-//	For each method, we have two images (one for each operator). Then we build an image for each method with the maximum for each pixel of these two images (using the \texttt{MAX} macro). \\
-//	We also compute the absolute maximum value of the constructed images for each method. \\
+//	For each method, we have two images (one for each operator). Then the first derivative magnitude image is constructed using $M=\sqrt{g_x^2+g_y^2}. \\
+//	Also the absolute maximum value of the constructed images is computed, for each method. \\
 //	Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
 		int i,j, fila, col;
@@ -200,9 +200,9 @@ int main(int argc, char *argv[]) {
 			fila += 1;
 			j = col + (w+2)*fila;
 			// Max in each case
-			im_roberts[i] = MAX(abs(im_r1[j]),abs(im_r2[j]));
-			im_prewitt[i] = MAX(abs(im_p1[j]),abs(im_p2[j]));
-			im_sobel[i] = MAX(abs(im_s1[j]),abs(im_s2[j]));
+			im_roberts[i] = sqrt(im_r1[j]*im_r1[j] + im_r2[j]*im_r2[j]);
+			im_prewitt[i] = sqrt(im_p1[j]*im_p1[j] + im_p2[j]*im_p2[j]);
+			im_sobel[i] = sqrt(im_s1[j]*im_s1[j] + im_s2[j]*im_s2[j]);
 			// Absolute max
 			max_r = MAX(max_r,im_roberts[i]);
 			max_p = MAX(max_p,im_prewitt[i]);
