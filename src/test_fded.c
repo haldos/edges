@@ -163,7 +163,7 @@ int main(int argc, char *argv[]) {
 
 		// Convolve images:
 //  Software Guide : BeginLatex
-//	We convolve the input image with the defined operatos, using the \texttt{conv2d} function in \texttt{2dconvolution.c}:
+//	The input image is convolved with the defined operatos, using the \texttt{conv2d} function in \texttt{2dconvolution.c}:
 //  Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
 		double *im_r1 = conv2d(im, w, h, roberts_1, 3);
@@ -185,7 +185,7 @@ int main(int argc, char *argv[]) {
 // Software Guide : EndCodeSnippet
 
 //	Software Guide : BeginLatex
-//	For each method, we have two images (one for each operator). Then the first derivative magnitude image is constructed using $M=\sqrt{g_x^2+g_y^2}. \\
+//	For each method, two images are obtained (one for each operator). Then the first derivative magnitude image is constructed using $M=\sqrt{g_x^2+g_y^2}$. \\
 //	Also the absolute maximum value of the constructed images is computed, for each method. \\
 //	Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
@@ -212,7 +212,7 @@ int main(int argc, char *argv[]) {
 
 		// Thresholding
 //	Software Guide : BeginLatex
-//	We create thresholded images of each method using the THRESHOLD macro: \\
+//	Thresholded images of each method is created, using the THRESHOLD macro: \\
 //	Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
 		float th = atof(argv[2]);

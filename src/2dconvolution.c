@@ -38,8 +38,8 @@
 //  Software Guide : EndLatex 
 
 // Software Guide : BeginCodeSnippet
-#include <stdlib.h> // malloc, calloc, free
-#include <stdio.h> // fprintf
+	#include <stdlib.h> // malloc, calloc, free
+	#include <stdio.h> // fprintf
 // Software Guide : EndCodeSnippet
 
 /*!
@@ -230,19 +230,69 @@ double *conv2d(double *input, int w, int h, double *kernel, int n){
 		exit(EXIT_FAILURE);
 	}
 
+// TODO: add input variable called "padding_method", integer. 
+//			Possible values: "0" and "1"
+//			"0" means zero-padding
+//			"1" means border image reflection
+int padding_method = 1;
+
 //  Software Guide : BeginLatex
-//	Fill in the values ​​of the image \texttt{aux}, centering the original image \texttt{input} on it. \\
+//	Fill in the values ​​of the image \texttt{aux}, centering the original image \texttt{input} on it (zero-padding). \\
 //  Software Guide : EndLatex
 //  Software Guide : BeginCodeSnippet
 	int i,j,fila,col;
 	int imax = wx*hx;
-	for(i=0;i<imax;i++){
-		fila = (int)(i/wx);
-		col = i-(wx*fila);
-		if ( (fila>=n-1)&&(col>=n-1)&&(fila<h+n-1)&&(col<w+n-1) ) {
-			aux[i] = input[(col-n+1)+(w*(fila-n+1))];
+	if (padding_method == 0) {
+		for(i=0;i<imax;i++){
+			fila = (int)(i/wx);
+			col = i-(wx*fila);
+			if ( (fila>=n-1)&&(col>=n-1)&&(fila<h+n-1)&&(col<w+n-1) ) {
+				aux[i] = input[(col-n+1)+(w*(fila-n+1))];
+			}
 		}
 	}
+//  Software Guide : EndCodeSnippet
+
+// Software Guide: BeginLatex
+// Other padding method: reflection of the image (if \texttt{padding\_method} equal to $1$). \\
+// Software Guide: EndLatex
+//  Software Guide : BeginCodeSnippet
+	if (padding_method == 1) {
+		int fila_refl, col_refl;
+		for(i=0;i<imax;i++){
+			fila = (int)(i/wx);
+			col = i-(wx*fila);
+			if (fila<n-1) {
+				fila_refl = 2*n - 3 - fila;
+				if (col<n-1) { //zone1
+					col_refl = 2*n - 3 - col;
+				} else if (col<w+n-1) {	//zone2
+					col_refl = col;
+				} else { //zone3
+					col_refl = 2*w + 2*n - 3 - col;
+				}
+			} else if (fila<h+n-1) {
+				fila_refl = fila;
+				if (col<n-1) { //zone4
+					col_refl = 2*n - 3 - col;
+				} else if (col<w+n-1) { //image
+					col_refl = col;
+				} else { //zone5
+					col_refl =  2*w + 2*n - 3 - col;
+				}
+			} else {
+				fila_refl = 2*h + 2*n - 3 - fila;
+				if (col<n-1) { //zone6
+					col_refl =	2*n - 3 - col;
+				} else if (col<w+n-1) {	//zone7
+					col_refl = col;
+				} else { //zone8
+					col_refl =  2*w + 2*n - 3 - col;
+				}
+			}
+			aux[i] = input[(col_refl-n+1)+(w*(fila_refl-n+1))];
+		} //for
+	} //if
 //  Software Guide : EndCodeSnippet
 
 //  Software Guide : BeginLatex
@@ -290,6 +340,7 @@ double *conv2d(double *input, int w, int h, double *kernel, int n){
 	free(aux);
 	free_neighbors_offsets(offsets);
 	return out;
+	//return aux; //TEST
 //  Software Guide : EndCodeSnippet
 
 }

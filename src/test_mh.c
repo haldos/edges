@@ -107,9 +107,9 @@ int main(int argc, char *argv[]) {
 		// Grayscale conversion (if necessary)
 //  Software Guide : BeginLatex
 //	Grayscale conversion (if necessary): \\
-//	First we allocate memory for the grayscale image \texttt{im}, with
-//	the corresponding correct allocation check. Then we check the number of channels of the image: if
-//	\texttt{pixeldim}=3, we assume RGB image and conversion is needed, else, we assume single channel image and
+//	First is allocated the memory for the grayscale image \texttt{im}, with
+//	the corresponding correct allocation check. Then the number of channels of the image is checked: if
+//	\texttt{pixeldim}=3, RGB image is assumed and conversion is needed, else, single channel image (grayscale) is assumed and
 //	no conversion is required.\\
 //	The computation of the gray intensity from RGB levels is:
 //	$$
@@ -203,7 +203,7 @@ int main(int argc, char *argv[]) {
 		// Laplacian of the smoothed image
 //  Software Guide : BeginLatex
 //	Computation of the Laplacian of the smoothed image: \\
-//	We use a $3\times 3$ approximation of the laplacian operator: \\
+//	A $3\times 3$ approximation of the laplacian operator is used: \\
 //	$$
 //	\begin{bmatrix}
 //		1 &  1 & 1 \\
@@ -211,7 +211,7 @@ int main(int argc, char *argv[]) {
 //		1 &  1 & 1 
 //	\end{bmatrix}
 //	$$
-//	Using the \texttt{conv2d} function we obtain the \texttt{laplacian} image. \\
+//	Using the \texttt{conv2d} function, the \texttt{laplacian} image is obtained. \\
 //  Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
 		double operator[9] = {1, 1, 1, 1, -8, 1, 1, 1, 1};
@@ -221,7 +221,7 @@ int main(int argc, char *argv[]) {
 		// calculate max absolute value of laplacian:
 		// required for thresholding in zero-crossing (next)
 //  Software Guide : BeginLatex
-//	Now we calculate the maximum absolute value of the \texttt{laplacian} image. This value is required
+//	Now the maximum absolute value of the \texttt{laplacian} image is calculated. This value is required
 //	for thresholding in zero-crossing calculation. \\
 //  Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
@@ -262,8 +262,8 @@ int main(int argc, char *argv[]) {
 		// Zero-crossing
 //  Software Guide : BeginLatex
 //	Zero-crossing: \\
-//	We explore the image, looking in every pixel a change of sign between neighboring opposite pixels.
-// 	In every pixel $p$ we use the funcion \texttt{get\_neighborhood} (in \texttt{2dconvolution.c}) to get the
+//	The image is explored, looking in every pixel a change of sign between neighboring opposite pixels.
+// 	In every pixel $p$ the funcion \texttt{get\_neighborhood} (in \texttt{2dconvolution.c}) is used to get the
 //	9 pixels of its neighborhood:
 //	$$
 //	\begin{bmatrix}
@@ -283,7 +283,7 @@ int main(int argc, char *argv[]) {
 // Software Guide : BeginCodeSnippet
 		float *zero_cross = calloc(w*h,sizeof(float));		
 						// this image will only content values 0 and 255
-						// but we use float for saving using iio.
+						// but float type is used for saving using iio.
 		if (zero_cross == NULL){
 			fprintf(stderr, "Out of memory...\n");
 			exit(EXIT_FAILURE);
@@ -346,6 +346,6 @@ int main(int argc, char *argv[]) {
 }
 
 //  Software Guide : BeginLatex
-//	\textit{Note: the main function in \texttt{test\_mh\_log.c} is essentially the same. The only difference is that we generate a LoG kernel (instead a Gaussian kernel) using the
-//	\texttt{LoG\_kernel} function in \texttt{gaussian\_kernel.c}. Therefore we don't need the laplacian operator, so we only make one convolution.} \\
+//	\textit{Note: the main function in \texttt{test\_mh\_log.c} is essentially the same. The only difference is that a LoG kernel is generated (instead a Gaussian kernel) using the
+//	\texttt{LoG\_kernel} function in \texttt{gaussian\_kernel.c}. Therefore there is no need to use the laplacian operator, so only one convolution is made.} \\
 //  Software Guide : EndLatex

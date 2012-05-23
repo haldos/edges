@@ -167,8 +167,10 @@ int main(int argc, char *argv[]) {
 // Software Guide : EndCodeSnippet
 
 		// Zero-padding
+int padding_method = 1;
 //  Software Guide : BeginLatex
-//	Zero-padding: we need a larger auxiliar image \texttt{aux} to compute the coefficients $k_1$ to $k_{10}$ in every pixel of the original image. \\
+//	Padding: a larger auxiliar image \texttt{aux} is required to compute the coefficients $k_1$ to $k_{10}$ in every pixel of the original image. \\
+//	Two different methods are implemented: zero-padding (\texttt{padding\_method}$=0$) and reflection of original image (\texttt{padding\_method}$=1$).
 //  Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
 		int wx = (w+8);
@@ -176,29 +178,69 @@ int main(int argc, char *argv[]) {
 		double *aux = calloc(wx*hx,sizeof(double));
 		int fila,col;
 		int imax = wx*hx;
-		for(i=0;i<imax;i++){
-			fila = (int)(i/wx);
-			col = i-(wx*fila);	
-			if ( (fila>=4)&&(col>=4)&&(fila<h+4)&&(col<w+4) ) {
-				aux[i] = im[(col-4)+(w*(fila-4))];
+		if (padding_method == 0) {
+			for(i=0;i<imax;i++){
+				fila = (int)(i/wx);
+				col = i-(wx*fila);	
+				if ( (fila>=4)&&(col>=4)&&(fila<h+4)&&(col<w+4) ) {
+					aux[i] = im[(col-4)+(w*(fila-4))];
+				}
 			}
+		}
+// Software Guide : EndCodeSnippet
+// Software Guide : BeginCodeSnippet
+		if (padding_method == 1) {
+			int fila_refl, col_refl;
+			for(i=0;i<imax;i++){
+				fila = (int)(i/wx);
+				col = i-(wx*fila);
+				if (fila<4) {
+					fila_refl = 7 - fila;
+					if (col<4) { //zone1
+						col_refl = 7 - col;
+					} else if (col<w+4) {	//zone2
+						col_refl = col;
+					} else { //zone3
+						col_refl = 2*w + 7 - col;
+					}
+				} else if (fila<h+4) {
+					fila_refl = fila;
+					if (col<4) { //zone4
+						col_refl = 7 - col;
+					} else if (col<w+4) { //image
+						col_refl = col;
+					} else { //zone5
+						col_refl =  2*w + 7 - col;
+					}
+				} else {
+					fila_refl = 2*h + 7 - fila;
+					if (col<4) { //zone6
+						col_refl =	7 - col;
+					} else if (col<w+4) {	//zone7
+						col_refl = col;
+					} else { //zone8
+						col_refl =  2*w + 7 - col;
+					}
+				}
+				aux[i] = im[(col_refl-4)+(w*(fila_refl-4))];
+			} //for
 		}
 // Software Guide : EndCodeSnippet
 		
 		// Haralick's algorithm
 //  Software Guide : BeginLatex
-//	Haralick algorithm: we compute the coefficients $k_1$ to $k_{10}$ in every pixel of the original image 
+//	Haralick algorithm: coefficients $k_1$ to $k_{10}$ are computed in every pixel of the original image 
 //	(using the function \texttt{get\_neighbors\_offset} to get the index offsets of the neighbor pixels and 
 //	the function \texttt{get\_neighborhood} to get the neighborhood of a pixel using those index offsets). 
-//	Once we have the coefficients, we compute:
+//	Once the coefficients are calculated, are computed
 //	$$
 //	C_2 = \frac{k_2^2k_4 + k_2k_3k_5 + k_3^2k_6}{k_2^2 + k_3^2}
 //	$$
 //	and
 //	$$
-//	C_3 = \frac{k_2^3k_7 + k_2^2k_3k_8 + k_2k_3^2k_9 + k_3^3k_{10}}{(\sqrt{k_2^2 + k_3^2})^3}
+//	C_3 = \frac{k_2^3k_7 + k_2^2k_3k_8 + k_2k_3^2k_9 + k_3^3k_{10}}{(\sqrt{k_2^2 + k_3^2})^3},
 //	$$
-//	and then evaluate in every pixel the edge condition: $|\frac{C_2}{2C_3}|\leq\rho_0$. \\
+//	and then the edge condition is evaluated in every pixel; $|\frac{C_2}{2C_3}|\leq\rho_0$. \\
 //  Software Guide : EndLatex
 //  Software Guide : BeginCodeSnippet
 		int i_zp, u, v, num_edges;
@@ -210,7 +252,7 @@ int main(int argc, char *argv[]) {
 		for(fila=0;fila<h;fila++){
 			for(col=0;col<w;col++){
 				i = col + w*fila;				// original image & edges image index
-				i_zp = (col+4) + wx*(fila+4);	// zero padded image index
+				i_zp = (col+4) + wx*(fila+4);	// padded image index
 				double *neighborhood = get_neighborhood(aux, i_zp, 5, offsets);
 				// k1 to k10 (note: k1 (u=0) is not necessary)
 				for(u=0;u<10;u++){
