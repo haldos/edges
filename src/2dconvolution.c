@@ -202,6 +202,7 @@ double *get_neighborhood(double *im, int pos, int n, int* offsets){
  @param h Input image heigth.
  @param *kernel Kernel array used in the convolution.
  @param n Size of the kernel (n x n).
+ @param padding_method Padding method flag: 0 means zero-padding, 1 means image boundary reflection.
  \return Double array of size (w+n-1)x(h+n-1), output of the convolution between input image and kernel, and using zero-padding.
 */
 //  Software Guide : BeginLatex
@@ -210,10 +211,11 @@ double *get_neighborhood(double *im, int pos, int n, int* offsets){
 // 
 //	\normalsize
 //	This function calculates the convolution of image \texttt{input} (size $w\times h$) with the kernel \texttt{kernel} (size $n\times n$).
-//	Returns an image of size $(w+n-1)\times(h+n-1)$ (due to zero padding).
+//	Returns an image of size $(w+n-1)\times(h+n-1)$ (due to padding). The integer \texttt{padding\_method} manages the padding method: $0$
+//  means zero-padding, $1$ means image boundary reflection. \\
 //  Software Guide : EndLatex
 //  Software Guide : BeginCodeSnippet
-double *conv2d(double *input, int w, int h, double *kernel, int n){
+double *conv2d(double *input, int w, int h, double *kernel, int n, int padding_method){
 //  Software Guide : EndCodeSnippet
 	
 	// Zero-padding
@@ -229,12 +231,6 @@ double *conv2d(double *input, int w, int h, double *kernel, int n){
 		fprintf(stderr, "Out of memory...\n");
 		exit(EXIT_FAILURE);
 	}
-
-// TODO: add input variable called "padding_method", integer. 
-//			Possible values: "0" and "1"
-//			"0" means zero-padding
-//			"1" means border image reflection
-int padding_method = 1;
 
 //  Software Guide : BeginLatex
 //	Fill in the values ​​of the image \texttt{aux}, centering the original image \texttt{input} on it (zero-padding). \\

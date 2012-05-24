@@ -6,14 +6,15 @@
 //		| Implemented by Haldo Spontón		       |
 //		+------------------------------------------+
 
-double *conv2d(double *input, int w, int h, double *kernel, int n);
+double *conv2d(double *input, int w, int h, double *kernel, int n, int padding_method);
 // inputs:
-//			double *input	-	pointer to input image
-//			int w, int h	-	width and height of input image
-//			double *kernel	-	pointer to kernel
-//			int n			-	size of kernel
+//			double *input		-	pointer to input image
+//			int w, int h		-	width and height of input image
+//			double *kernel		-	pointer to kernel
+//			int n				-	size of kernel
+//			int padding_method	-	padding method: 0 for zero-padding, 1 for image boundary reflection
 // output:
-//			double *xxxx	-	convolved image (size: (w+n-1)*(h+n-1) )
+//			double *xxxx		-	convolved image (size: (w+n-1)*(h+n-1) )
 
 double *get_neighborhood(double *im, int pos, int n, int* offsets);
 // inputs:

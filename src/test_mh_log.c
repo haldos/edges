@@ -46,6 +46,7 @@
  @param sigma Standard deviation of the Laplacian of a Gaussian kernel.
  @param n Size of the kernel (n x n).
  @param tzc Threshold for the zero-crossing algorithm.
+ @param padding_method Padding method flag (in convolution): 0 means zero-padding, 1 means image boundary reflection.
  @param output_image Filename of the output image.
  \return None.
  \ingroup mhl
@@ -53,8 +54,8 @@
 */
 
 int main(int argc, char *argv[]) {
-	if (argc != 6) {
-		printf("Usage: %s input_image_1 sigma n tzc output\n", argv[0]);
+	if (argc != 7) {
+		printf("Usage: %s input_image_1 sigma n tzc padding_method output\n", argv[0]);
 	} else {
 
 		// Execution time:
@@ -68,6 +69,8 @@ int main(int argc, char *argv[]) {
 			// <n> is the size of the kernel (n*n).
 		float tzc = atof(argv[4]);
 			// <tzc> is the threshold of the zero-crossing method.
+		int padding_method = atoi(argv[5]);
+			// padding method in convolution (0: zero-crossing, 1: reflection).
 	
 		// Load input image (using iio)
 		int w, h, pixeldim;
@@ -124,7 +127,7 @@ int main(int argc, char *argv[]) {
 		// end of save kernel image.
 		
 		// Smooth input image with gaussian kernel
-		double *im_smoothed = conv2d(im, w, h, kernel, n);
+		double *im_smoothed = conv2d(im, w, h, kernel, n, padding_method);
 
 		// Debug: save smoothed image (this is not part of the algorithm itself)
 		if (SAVE_SMOOTHED_IMAGE){
@@ -193,8 +196,8 @@ int main(int argc, char *argv[]) {
 		free_neighbors_offsets(offsets);
 
 		// Save output image
-		iio_save_image_float_vec(argv[5], zero_cross, w, h, 1);
-		fprintf(stderr, "Output Image saved in %s:\t %dx%d image with %d channel(s).\n", argv[5], w, h, pixeldim);
+		iio_save_image_float_vec(argv[6], zero_cross, w, h, 1);
+		fprintf(stderr, "Output Image saved in %s:\t %dx%d image with %d channel(s).\n", argv[6], w, h, pixeldim);
 	
 		// Free memory
 		free(zero_cross);

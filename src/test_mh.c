@@ -39,6 +39,7 @@
 //		\item \texttt{sigma} - Standard deviation $\sigma$ of the Gaussian kernel.
 //		\item \texttt{n} - Size $n$ of the Gaussian kernel ($n\times n$).
 //		\item \texttt{tzc} - Threshold in the Zero-Crossing calculation ($0\leq t_{zc}\leq 1$).
+//		\item \texttt{padding\_method} - Padding method flag (in convolution): 0 means zero-padding, 1 means image boundary reflection.
 //		\item \texttt{output\_image} - Output image (edges).
 //	\end{itemize}
 //
@@ -64,6 +65,7 @@
  @param sigma Standard deviation of the Gaussian kernel.
  @param n Size of the kernel (n x n).
  @param tzc Threshold for the zero-crossing algorithm.
+ @param padding_method Padding method flag (in convolution): 0 means zero-padding, 1 means image boundary reflection.
  @param output_image Filename of the output image.
  \return None.
  \ingroup mhg 
@@ -78,8 +80,8 @@
 int main(int argc, char *argv[]) {
 // Software Guide : EndCodeSnippet
 
-	if (argc != 6) {
-		printf("Usage: %s input_image sigma n tzc output_image\n", argv[0]);
+	if (argc != 7) {
+		printf("Usage: %s input_image sigma n tzc padding_method output_image\n", argv[0]);
 	} else {
 
 		// Variable to measure execution time:
@@ -93,6 +95,8 @@ int main(int argc, char *argv[]) {
 			// <n> is the size of the kernel (n*n).
 		float tzc = atof(argv[4]);
 			// <tzc> is the threshold of the zero-crossing method.
+		int padding_method = atoi(argv[5]);
+			// padding method in convolution (0: zero-crossing, 1: reflection).
 	
 		// Load input image (using iio)
 //  Software Guide : BeginLatex
@@ -173,7 +177,7 @@ int main(int argc, char *argv[]) {
 //	Smooth input image with the Gaussian kernel previously generated, using the \texttt{conv2d} function in \texttt{2dconvolution.c}: \\
 //  Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
-		double *im_smoothed = conv2d(im, w, h, kernel, n);
+		double *im_smoothed = conv2d(im, w, h, kernel, n, padding_method);
 // Software Guide : EndCodeSnippet
 
 		// Debug: save smoothed image (this is not part of the algorithm itself)
@@ -215,7 +219,7 @@ int main(int argc, char *argv[]) {
 //  Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
 		double operator[9] = {1, 1, 1, 1, -8, 1, 1, 1, 1};
-		double *laplacian = conv2d(im_smoothed, w+n-1, h+n-1, operator, 3);
+		double *laplacian = conv2d(im_smoothed, w+n-1, h+n-1, operator, 3, padding_method);
 // Software Guide : EndCodeSnippet
 		
 		// calculate max absolute value of laplacian:
@@ -321,9 +325,9 @@ int main(int argc, char *argv[]) {
 //	Save output image (using \textit{iio}): \\
 //  Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
-		iio_save_image_float_vec(argv[5], zero_cross, w, h, 1);
+		iio_save_image_float_vec(argv[6], zero_cross, w, h, 1);
 // Software Guide : EndCodeSnippet
-		fprintf(stderr, "Output Image saved in %s:\t %dx%d image with %d channel(s).\n", argv[5], w, h, pixeldim);
+		fprintf(stderr, "Output Image saved in %s:\t %dx%d image with %d channel(s).\n", argv[6], w, h, pixeldim);
 	
 		// Free memory
 		free(zero_cross);

@@ -37,6 +37,7 @@
 //	\begin{itemize}
 //		\item \texttt{input\_image} - Input image.
 //		\item \texttt{threshold} - Threshold for gradient image ($0\leq th \leq 1$).
+//		\item \texttt{padding\_method} - Padding method flag (in convolution): 0 means zero-padding, 1 means image boundary reflection.
 //	\end{itemize}
 //
 //	\textit{Note: Output images are saved with the filenames ``\texttt{roberts.png}'', ``\texttt{prewitt.png}'' and ``\texttt{sobel.png}''.} \\
@@ -64,6 +65,7 @@
  \brief Main function of the Roberts, Prewitt and Sobel edge detection algorithms.
  @param input_image Input image filename.
  @param threshold Gradient threshold used to generate binary edges images.
+ @param padding_method Padding method flag (in convolution): 0 means zero-padding, 1 means image boundary reflection.
  \return None.
  \ingroup fded
 	\note The real name of this function is main. Function name was temporarily changed to the proper functioning of doxygen.
@@ -77,8 +79,8 @@
 int main(int argc, char *argv[]) {
 // Software Guide : EndCodeSnippet
 
-	if (argc != 3) {
-		printf("Usage: %s input_image threshold\n", argv[0]);
+	if (argc != 4) {
+		printf("Usage: %s input_image threshold padding_method\n", argv[0]);
 	} else {
 
 		// Execution time:
@@ -166,12 +168,13 @@ int main(int argc, char *argv[]) {
 //	The input image is convolved with the defined operatos, using the \texttt{conv2d} function in \texttt{2dconvolution.c}:
 //  Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
-		double *im_r1 = conv2d(im, w, h, roberts_1, 3);
-		double *im_r2 = conv2d(im, w, h, roberts_2, 3);
-		double *im_p1 = conv2d(im, w, h, prewitt_1, 3);
-		double *im_p2 = conv2d(im, w, h, prewitt_2, 3);
-		double *im_s1 = conv2d(im, w, h, sobel_1, 3);
-		double *im_s2 = conv2d(im, w, h, sobel_2, 3);
+		int padding_method = atoi(argv[3]);
+		double *im_r1 = conv2d(im, w, h, roberts_1, 3, padding_method);
+		double *im_r2 = conv2d(im, w, h, roberts_2, 3, padding_method);
+		double *im_p1 = conv2d(im, w, h, prewitt_1, 3, padding_method);
+		double *im_p2 = conv2d(im, w, h, prewitt_2, 3, padding_method);
+		double *im_s1 = conv2d(im, w, h, sobel_1, 3, padding_method);
+		double *im_s2 = conv2d(im, w, h, sobel_2, 3, padding_method);
 // Software Guide : EndCodeSnippet
 
 		// Allocate memory for final images:

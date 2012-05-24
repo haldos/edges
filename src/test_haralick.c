@@ -36,6 +36,7 @@
 //	\begin{itemize}
 //		\item \texttt{input\_image} - Input image.
 //		\item \texttt{rhozero} - Threshold for the Haralick condition $|\frac{C_2}{2C_3}|\leq\rho_0$.
+//		\item \texttt{padding\_method} - Padding method flag (in convolution): 0 means zero-padding, 1 means image boundary reflection.
 //		\item \texttt{output\_image} - Output image (edges).
 //	\end{itemize}
 //
@@ -53,6 +54,7 @@
  \brief Main function of the Haralick edge detection algorithms.
  @param input_image Input image filename.
  @param rho_zero Threshold for the Haralick edge condition.
+ @param padding_method Padding method flag (in convolution): 0 means zero-padding, 1 means image boundary reflection.
  @param output Output image filename.
  \return None.
  \ingroup haralick
@@ -66,8 +68,8 @@
 // Software Guide : BeginCodeSnippet
 int main(int argc, char *argv[]) {
 // Software Guide : EndCodeSnippet
-	if (argc != 4) {
-		printf("Usage: %s input_image rhozero output\n", argv[0]);
+	if (argc != 5) {
+		printf("Usage: %s input_image rhozero padding_method output\n", argv[0]);
 	} else {
 
 		// Execution time:
@@ -76,6 +78,7 @@ int main(int argc, char *argv[]) {
 		// Parameters
 		float rhozero = atof(argv[2]);
 		int i,j;
+		int padding_method = atoi(argv[3]);
 	
 		// Load input image (using iio)
 //  Software Guide : BeginLatex
@@ -167,7 +170,6 @@ int main(int argc, char *argv[]) {
 // Software Guide : EndCodeSnippet
 
 		// Zero-padding
-int padding_method = 1;
 //  Software Guide : BeginLatex
 //	Padding: a larger auxiliar image \texttt{aux} is required to compute the coefficients $k_1$ to $k_{10}$ in every pixel of the original image. \\
 //	Two different methods are implemented: zero-padding (\texttt{padding\_method}$=0$) and reflection of original image (\texttt{padding\_method}$=1$).
@@ -286,9 +288,9 @@ int padding_method = 1;
 //	Save output image (using \textit{iio}): \\
 //	Software Guide : EndLatex
 //	Software Guide : BeginCodeSnippet
-		iio_save_image_float_vec(argv[3], edges, w, h, 1);
+		iio_save_image_float_vec(argv[4], edges, w, h, 1);
 //	Software Guide : EndCodeSnippet
-		fprintf(stderr, "Output Image saved in %s:\t %dx%d image with %d channel(s).\n", argv[3], w, h, pixeldim);
+		fprintf(stderr, "Output Image saved in %s:\t %dx%d image with %d channel(s).\n", argv[4], w, h, pixeldim);
 	
 		// Free memory
 		free(im_orig);
