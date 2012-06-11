@@ -76,7 +76,7 @@ double *gaussian_kernel(int n, float sigma){
 	
 	// Generation of the kernel
 //  Software Guide : BeginLatex
-//	We generate a normalized Gaussian kernel using the expression $e^{-\frac{x^2+y^2}{2\sigma^2}}$. \\
+//	A normalized Gaussian kernel is generated using the expression $e^{-\frac{x^2+y^2}{2\sigma^2}}$. \\
 //  Software Guide : EndLatex
 //  Software Guide : BeginCodeSnippet
 	int i;
@@ -91,6 +91,11 @@ double *gaussian_kernel(int n, float sigma){
 		kernel[i] = exp(-(x*x + y*y)/(2*sigma*sigma));
 		suma += kernel[i];
 	}
+//  Software Guide : EndCodeSnippet
+//  Software Guide : BeginLatex
+//	Kernel normalization, using the sum of its components. \\
+//  Software Guide : EndLatex
+//  Software Guide : BeginCodeSnippet
 	for(i=0;i<n*n;i++){
 		kernel[i] = kernel[i]/suma;
 	}

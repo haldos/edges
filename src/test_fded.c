@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
 
 		// Grayscale conversion (if necessary)
 //  Software Guide : BeginLatex
-//	Grayscale conversion (if necessary): explained in \ref{app:marr-hildreth}. \\ \\
+//	Grayscale conversion (if necessary): explained in \ref{sec:grayscale}. \\ \\
 //  Software Guide : EndLatex
 		double *im = malloc(w*h*sizeof(double));
 		if (im == NULL){
@@ -126,29 +126,29 @@ int main(int argc, char *argv[]) {
 
 		// Define operators:
 //  Software Guide : BeginLatex
-//	Define the Roberts, Prewitt and Sobel operators: \\
+//	Define the normalized Roberts, Prewitt and Sobel operators: \\
 //	(We use $3\times 3$ operators)
 //	\begin{itemize}
 //		\item	Roberts:
 //				$$
-//				R_1 = \begin{bmatrix} -1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}
+//				R_1 = \begin{bmatrix} \frac{-1}{\sqrt{2}} & 0 & 0 \\ 0 & \frac{1}{\sqrt{2}} & 0 \\ 0 & 0 & 0 \end{bmatrix}
 //				$$
 //				$$
-//				R_2 = \begin{bmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}
+//				R_2 = \begin{bmatrix} 0 & \frac{-1}{\sqrt{2}} & 0 \\ \frac{1}{\sqrt{2}} & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}
 //				$$
 //		\item	Prewitt:
 //				$$
-//				P_1 = \begin{bmatrix} -1 & -1 & -1 \\ 0 & 0 & 0 \\ 1 & 1 & 1 \end{bmatrix}
+//				P_1 = \begin{bmatrix} \frac{-1}{\sqrt{6}} & \frac{-1}{\sqrt{6}} & \frac{-1}{\sqrt{6}} \\ 0 & 0 & 0 \\ \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{6}} \end{bmatrix}
 //				$$
 //				$$
-//				P_2 = \begin{bmatrix} -1 & 0 & 1 \\ -1 & 0 & 1 \\ -1 & 0 & 1 \end{bmatrix}
+//				P_2 = \begin{bmatrix} \frac{-1}{\sqrt{6}} & 0 & \frac{1}{\sqrt{6}} \\ \frac{-1}{\sqrt{6}} & 0 & \frac{1}{\sqrt{6}} \\ \frac{-1}{\sqrt{6}} & 0 & \frac{1}{\sqrt{6}} \end{bmatrix}
 //				$$
 //		\item	Sobel:
 //				$$
-//				S_1 = \begin{bmatrix} -1 & -2 & -1 \\ 0 & 0 & 0 \\ 1 & 2 & 1 \end{bmatrix}
+//				S_1 = \begin{bmatrix} \frac{-1}{\sqrt{12}} & \frac{-1}{\sqrt{3}} & \frac{-1}{\sqrt{12}} \\ 0 & 0 & 0 \\ \frac{1}{\sqrt{12}} & \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{12}} \end{bmatrix}
 //				$$
 //				$$
-//				S_2 = \begin{bmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{bmatrix}
+//				S_2 = \begin{bmatrix} \frac{-1}{\sqrt{12}} & 0 & \frac{1}{\sqrt{12}} \\ \frac{-1}{\sqrt{3}} & 0 & \frac{1}{\sqrt{3}} \\ \frac{-1}{\sqrt{12}} & 0 & \frac{1}{\sqrt{12}} \end{bmatrix}
 //				$$
 //	\end{itemize}
 //  Software Guide : EndLatex
@@ -161,6 +161,15 @@ int main(int argc, char *argv[]) {
 		//---------------------------------------------------------------------------------
 		double sobel_1[9] = {-1,-2,-1, 0, 0, 0, 1, 2, 1};		// SOBEL
 		double sobel_2[9] = {-1, 0, 1,-2, 0, 2,-1, 0, 1};		// OPERATORS
+		//---------------------------------------------------------------------------------
+		for (z=0;z<9;z++) {										// NORMALIZATION
+			roberts_1[z] /= sqrt(2);
+			roberts_2[z] /= sqrt(2);
+			prewitt_1[z] /= sqrt(6);
+			prewitt_2[z] /= sqrt(6);
+			sobel_1[z] /= sqrt(12);
+			sobel_2[z] /= sqrt(12);
+		}
 // Software Guide : EndCodeSnippet
 
 		// Convolve images:
@@ -188,7 +197,7 @@ int main(int argc, char *argv[]) {
 // Software Guide : EndCodeSnippet
 
 //	Software Guide : BeginLatex
-//	For each method, two images are obtained (one for each operator). Then the first derivative magnitude image is constructed using $M=\sqrt{g_x^2+g_y^2}$. \\
+//	For each method, two images are obtained (one for each operator). Then the gradient magnitude image is constructed using $M=\sqrt{g_x^2+g_y^2}$. \\
 //	Also the absolute maximum value of the constructed images is computed, for each method. \\
 //	Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet

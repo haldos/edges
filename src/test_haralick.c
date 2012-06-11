@@ -265,12 +265,11 @@ int main(int argc, char *argv[]) {
 					k[u] = acum;
 				}
 				// compute C2 and C3
-				denom = sqrt( k[1]*k[1] + k[2]*k[2] );
+				denom = -sqrt( k[1]*k[1] + k[2]*k[2] );
 				C2 = ( k[1]*k[1]*k[3] + k[1]*k[2]*k[4] + k[2]*k[2]*k[5] ) / ( denom*denom );
 				C3 = ( k[1]*k[1]*k[1]*k[6] + k[1]*k[1]*k[2]*k[7] + 
 					   k[1]*k[2]*k[2]*k[8] + k[2]*k[2]*k[2]*k[9] ) / ( denom*denom*denom );
-				denom = fabs(C2 / (3*C3));
-				if (denom<=rhozero) {
+				if ((fabs(C2 / (3*C3))<=rhozero)&&(C3<=0)) {
 					edges[i] = 255;
 					num_edges += 1;
 				}
