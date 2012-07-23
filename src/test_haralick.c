@@ -131,10 +131,10 @@ int main(int argc, char *argv[]) {
 //			}
 //		}
 		// [update 23/02/2012]
-		// New masks calculated by 2-d fitting using MS, with the function
+		// New masks calculated by 2-d fitting using LS, with the function
 		// f(x,y) = k1 + k2*x + k3*y + k4*x² + k5*xy + k6*y² + k7*x³ + k8*x²y + k9*xy² + k10*y³.
 //  Software Guide : BeginLatex
-//	Masks calculated by 2-d fitting (using MS) with the function: 
+//	Masks calculated by 2-d fitting (using LS) with the function: 
 //	$$
 //	f(x,y) = k_1 + k_2x + k_3y + k_4x^2 + k_5xy + k_6*y^2 + k_7x^3 + k_8x^2y + k_9xy^2 + k_{10}y^3 \\
 //	$$
@@ -265,11 +265,14 @@ int main(int argc, char *argv[]) {
 					k[u] = acum;
 				}
 				// compute C2 and C3
-				denom = -sqrt( k[1]*k[1] + k[2]*k[2] );
-				C2 = ( k[1]*k[1]*k[3] + k[1]*k[2]*k[4] + k[2]*k[2]*k[5] ) / ( denom*denom );
-				C3 = ( k[1]*k[1]*k[1]*k[6] + k[1]*k[1]*k[2]*k[7] + 
-					   k[1]*k[2]*k[2]*k[8] + k[2]*k[2]*k[2]*k[9] ) / ( denom*denom*denom );
-				if ((fabs(C2 / (3*C3))<=rhozero)&&(C3<=0)) {
+				denom = sqrt( k[1]*k[1] + k[2]*k[2] );
+				sintheta = - k[1] / denom;
+				costheta = - k[2] / denom;
+				C2 = k[3]*sintheta*sintheta + k[4]*sintheta*costheta + k[5]*costheta*costheta;
+				C3 = k[6]*sintheta*sintheta*sintheta + k[7]*sintheta*sintheta*costheta +
+					 k[8]*sintheta*costheta*costheta + k[9]*costheta*costheta*costheta;
+				//if ((fabs(C2 / (3*C3))<=rhozero)&&(C3<=0)) {
+				if ((fabs(C2 / (3*C3))<=rhozero)) {
 					edges[i] = 255;
 					num_edges += 1;
 				}

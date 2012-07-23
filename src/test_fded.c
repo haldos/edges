@@ -131,24 +131,24 @@ int main(int argc, char *argv[]) {
 //	\begin{itemize}
 //		\item	Roberts:
 //				$$
-//				R_1 = \begin{bmatrix} \frac{-1}{\sqrt{2}} & 0 & 0 \\ 0 & \frac{1}{\sqrt{2}} & 0 \\ 0 & 0 & 0 \end{bmatrix}
+//				R_1 = \begin{bmatrix} -1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{bmatrix}
 //				$$
 //				$$
-//				R_2 = \begin{bmatrix} 0 & \frac{-1}{\sqrt{2}} & 0 \\ \frac{1}{\sqrt{2}} & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}
+//				R_2 = \begin{bmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}
 //				$$
 //		\item	Prewitt:
 //				$$
-//				P_1 = \begin{bmatrix} \frac{-1}{\sqrt{6}} & \frac{-1}{\sqrt{6}} & \frac{-1}{\sqrt{6}} \\ 0 & 0 & 0 \\ \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{6}} & \frac{1}{\sqrt{6}} \end{bmatrix}
+//				P_1 = \begin{bmatrix} \frac{-1}{6} & \frac{-1}{6} & \frac{-1}{6} \\ 0 & 0 & 0 \\ \frac{1}{6} & \frac{1}{6} & \frac{1}{6} \end{bmatrix}
 //				$$
 //				$$
-//				P_2 = \begin{bmatrix} \frac{-1}{\sqrt{6}} & 0 & \frac{1}{\sqrt{6}} \\ \frac{-1}{\sqrt{6}} & 0 & \frac{1}{\sqrt{6}} \\ \frac{-1}{\sqrt{6}} & 0 & \frac{1}{\sqrt{6}} \end{bmatrix}
+//				P_2 = \begin{bmatrix} \frac{-1}{6} & 0 & \frac{1}{6} \\ \frac{-1}{6} & 0 & \frac{1}{6} \\ \frac{-1}{6} & 0 & \frac{1}{6} \end{bmatrix}
 //				$$
 //		\item	Sobel:
 //				$$
-//				S_1 = \begin{bmatrix} \frac{-1}{\sqrt{12}} & \frac{-1}{\sqrt{3}} & \frac{-1}{\sqrt{12}} \\ 0 & 0 & 0 \\ \frac{1}{\sqrt{12}} & \frac{1}{\sqrt{3}} & \frac{1}{\sqrt{12}} \end{bmatrix}
+//				S_1 = \begin{bmatrix} \frac{-1}{8} & \frac{-1}{4} & \frac{-1}{8} \\ 0 & 0 & 0 \\ \frac{1}{8} & \frac{1}{4} & \frac{1}{8} \end{bmatrix}
 //				$$
 //				$$
-//				S_2 = \begin{bmatrix} \frac{-1}{\sqrt{12}} & 0 & \frac{1}{\sqrt{12}} \\ \frac{-1}{\sqrt{3}} & 0 & \frac{1}{\sqrt{3}} \\ \frac{-1}{\sqrt{12}} & 0 & \frac{1}{\sqrt{12}} \end{bmatrix}
+//				S_2 = \begin{bmatrix} \frac{-1}{8} & 0 & \frac{1}{8} \\ \frac{-1}{4} & 0 & \frac{1}{4} \\ \frac{-1}{8} & 0 & \frac{1}{8} \end{bmatrix}
 //				$$
 //	\end{itemize}
 //  Software Guide : EndLatex
@@ -163,12 +163,12 @@ int main(int argc, char *argv[]) {
 		double sobel_2[9] = {-1, 0, 1,-2, 0, 2,-1, 0, 1};		// OPERATORS
 		//---------------------------------------------------------------------------------
 		for (z=0;z<9;z++) {										// NORMALIZATION
-			roberts_1[z] /= sqrt(2);
-			roberts_2[z] /= sqrt(2);
-			prewitt_1[z] /= sqrt(6);
-			prewitt_2[z] /= sqrt(6);
-			sobel_1[z] /= sqrt(12);
-			sobel_2[z] /= sqrt(12);
+			//roberts_1[z] /= 1;
+			//roberts_2[z] /= 1;
+			prewitt_1[z] /= 6;
+			prewitt_2[z] /= 6;
+			sobel_1[z] /= 8;
+			sobel_2[z] /= 8;
 		}
 // Software Guide : EndCodeSnippet
 
@@ -224,7 +224,7 @@ int main(int argc, char *argv[]) {
 
 		// Thresholding
 //	Software Guide : BeginLatex
-//	Thresholded images of each method is created, using the THRESHOLD macro: \\
+//	Thresholded images of each method are created, using the THRESHOLD macro: \\
 //	Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
 		float th = atof(argv[2]);

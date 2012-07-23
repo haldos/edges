@@ -117,8 +117,11 @@ int main(int argc, char *argv[]) {
 //	no conversion is required.\\
 //	The computation of the gray intensity from RGB levels is:
 //	$$
-//	G = \frac{6968\times R + 23434\times G + 2366\times B}{32768} \\
+//	I = \frac{6968\times (\text{float})R + 23434\times (\text{float})G + 2366\times (\text{float})B}{32768} \\
 //	$$
+//  To perform this operation, a cast is made to float on the values ​​$R$, $G$ and $B$ of the original image. This can be slow, 
+//  but ensures the correct image conversion. \\
+//  These coefficients also ensure there is no saturation in the calculation, since $\frac{6968\times 255 + 23434\times 255 + 2366\times 255}{32768} = \frac{8355840}{32768} = 255$.
 //  Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
 		double *im = malloc(w*h*sizeof(double));
