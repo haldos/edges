@@ -24,13 +24,14 @@ Filelist
 Root directory:
 
 	.:
-	bin  			-	Binary files folder (empty until compilation).
+	@build          - Suggested compilation directory.
+	@build/bin  	 -	Binary files folder (empty until compilation).
 	CMakeLists.txt  -	CMake configuration file.
-	README  		- 	This read me file.
+	README  		- 	This file.
 	src  			-	Source files folder.
 	test			-	Test images folder.
 	
-./bin: (empty until compilation)
+./@build/bin: (empty until compilation)
 
 ./example:
 
@@ -48,7 +49,7 @@ Root directory:
 	CMakeLists.txt		-	CMake configuration file.
 	gaussian_kernel.c	-	Implementation of the Gaussian and LoG kernel generation.
 	gaussian_kernel.h	-	(header file).
-	iio.c				-	IIO library C-file.
+	iio.c 				-	IIO library C-file.
 	iio.h     			-	IIO library (header file).
 	test_fded.c      	-	First derivative edge detectors, main C file.
 	test_haralick.c		-	Haralick algorithm, main C file.
@@ -57,21 +58,22 @@ Root directory:
 	
 ./test:
 
-	lena.png  		-	Lena image (512x512px).
-	molino.png  	-	Windmill image (1000x563px).
-	oranges.png		-	Oranges image (536x480px).
+	lena_gray.png  	-	Lena image (512x512px).
+	molino_gray.png   -	Windmill image (1000x563px).
+	oranges_gray.png	-	Oranges image (536x480px).
 
 Compilation
 -----------
 
-In the root directory:
+In the @build directory:
 
-	> cmake .
+	> cmake ..
 	> make
 
-Four executable files are created in the bin directory:
+An executable file is created in the @build/bin directory:
 
 	bin/:
+	edges_ipol
 	test_fded  		-	First derivative edge detectors (Roberts, Prewitt & Sobel).
 	test_haralick  	-	Haralick algorithm.
 	test_mh  		-	Marr-Hildreth algorithm, using Gaussian kernel.
@@ -150,6 +152,20 @@ Test images
 Some test images are provided in the «test» folder.
 The output images using «lena.png» as input image, are also provided in the «example» directory.
 
+Tested platforms
+----------------
+
+* Ubuntu Linux 14.04 x86_64
+   * gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1)
+* OSX Mavericks 10.9.2
+   * clang
+
+Changelog
+---------
+
+* 2014.04.30:
+   * Improved documentation to reflect the new implementation executables
+
 Copyrights
 ----------
 
@@ -157,7 +173,7 @@ Copyright (C) 2011-2012, Haldo Spontón <haldos@fing.edu.uy>
 
 Copyright (C) 2011-2012, Juan Cardelino <juanc@fing.edu.uy>
 
-Licence
+License
 -------
 
 This program is free software: you can use, modify and/or
